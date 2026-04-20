@@ -8,7 +8,15 @@ export class TokenService {
   constructor() { }
 
   salvarToken(token: string) {
-  localStorage.setItem('token', token);
-}
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  removerToken() {
+    localStorage.removeItem('token');
+  }
 
 }
