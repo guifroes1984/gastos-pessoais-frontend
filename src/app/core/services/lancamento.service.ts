@@ -21,4 +21,12 @@ export class LancamentoService {
     return this.http.get<Resumo>(`${this.api}/resumo`);
   }
 
+  salvar(dados: any) {
+    return this.http.post(this.api, dados);
+  }
+
+  listarCategorias() {
+    return this.http.get<any[]>(`${environment.apiUrl}/categorias`);
+  }
+
 }
