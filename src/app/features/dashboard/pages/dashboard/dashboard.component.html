@@ -1,65 +1,73 @@
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-semibold text-primary mb-0">
-      <i class="bi bi-speedometer2 me-2"></i>Dashboard
-    </h2>
-    <button class="btn btn-outline-danger rounded-pill shadow-sm px-4" (click)="logout()">
-      <i class="bi bi-box-arrow-right me-1"></i>Sair
-    </button>
-  </div>
-  <div class="row g-4 mt-2">
-    <div class="col-md-4">
-      <div class="card border-0 shadow-lg rounded-4 h-100">
-        <div class="card-body text-center p-4">
-          <div class="mb-3">
-            <div class="bg-success">
-              <i class="bi bi-wallet2 fs-1 text-success"></i>
-            </div>
-          </div>
-          <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Saldo Total</h5>
-          <h3 class="display-6 fw-bold text-success mb-0">
-            {{ saldo | currency: 'BRL' }}
-          </h3>
-        </div>
-      </div>
+    <!-- Cabeçalho com botão de sair -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-semibold text-primary mb-0">
+            <i class="bi bi-speedometer2 me-2"></i>Dashboard
+        </h2>
+        <button class="btn btn-outline-danger rounded-pill shadow-sm px-4" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-1"></i>Sair
+        </button>
     </div>
-    <div class="col-md-4">
-      <div class="card border-0 shadow-lg rounded-4 h-100">
-        <div class="card-body text-center p-4">
-          <div class="mb-3">
-            <div class="bg-primary">
-              <i class="bi bi-arrow-up-circle fs-1 text-primary"></i>
+
+    <!-- Cards de métricas -->
+    <div class="row g-4 mt-2">
+        <!-- Card Saldo -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <div class="bg-success bg-opacity-10 rounded-circle p-3 d-inline-block">
+                            <i class="bi bi-wallet2 fs-1 text-success"></i>
+                        </div>
+                    </div>
+                    <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Saldo Total</h5>
+                    <h3 class="display-6 fw-bold text-success mb-0">
+                        {{ saldo | currency: 'BRL' }}
+                    </h3>
+                </div>
             </div>
-          </div>
-          <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Total em Receitas</h5>
-          <h3 class="display-6 fw-bold text-primary mb-0">
-            {{ receitas | currency: 'BRL' }}
-          </h3>
-          <div class="mt-2">
-            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1">
-            </span>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card border-0 shadow-lg rounded-4 h-100">
-        <div class="card-body text-center p-4">
-          <div class="mb-3">
-            <div class="bg-danger">
-              <i class="bi bi-arrow-down-circle fs-1 text-danger"></i>
+
+        <!-- Card Receitas -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block">
+                            <i class="bi bi-arrow-up-circle fs-1 text-primary"></i>
+                        </div>
+                    </div>
+                    <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Total em Receitas</h5>
+                    <h3 class="display-6 fw-bold text-primary mb-0">
+                        {{ receitas | currency: 'BRL' }}
+                    </h3>
+                    <div class="mt-2">
+                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1">
+                        </span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Total em Despesas</h5>
-          <h3 class="display-6 fw-bold text-danger mb-0">
-            {{ despesas | currency: 'BRL' }}
-          </h3>
-          <div class="mt-2">
-            <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-1">
-            </span>
-          </div>
         </div>
-      </div>
+
+        <!-- Card Despesas -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <div class="bg-danger bg-opacity-10 rounded-circle p-3 d-inline-block">
+                            <i class="bi bi-arrow-down-circle fs-1 text-danger"></i>
+                        </div>
+                    </div>
+                    <h5 class="text-secondary text-uppercase small fw-semibold mb-2">Total em Despesas</h5>
+                    <h3 class="display-6 fw-bold text-danger mb-0">
+                        {{ despesas | currency: 'BRL' }}
+                    </h3>
+                    <div class="mt-2">
+                        <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-1">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

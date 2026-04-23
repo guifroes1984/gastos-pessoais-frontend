@@ -24,4 +24,14 @@ export class LancamentosListComponent implements OnInit {
     });
   }
 
+  excluir(id: number) {
+    if(!confirm('Deseja realmente excluir?')) return;
+
+    this.service.excluir(id).subscribe({
+      next: () => {
+        this.carregar();
+      }
+    });
+  }
+
 }

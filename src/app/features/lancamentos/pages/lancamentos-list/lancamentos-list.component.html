@@ -24,6 +24,9 @@
             <th class="py-3 pe-4">
               <i class="bi bi-calendar-event me-2"></i>Data
             </th>
+            <th class="py-3 text-center">
+              <i class="bi bi-gear me-2"></i>Ações
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -48,9 +51,24 @@
               <i class="bi bi-calendar3 me-1"></i>
               {{ l.data | date:'dd/MM/yyyy' }}
             </td>
+
+            <td class="py-3 text-center align-middle">
+              <div class="d-flex justify-content-center align-items-center gap-2">
+
+                <button class="btn btn-sm btn-outline-primary rounded-circle"
+                  [routerLink]="['/lancamentos/editar', l.id]" title="Editar">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button class="btn btn-sm btn-outline-danger rounded-circle" (click)="excluir(l.id)" title="Excluir">
+                  <i class="bi bi-trash"></i>
+                </button>
+
+              </div>
+            </td>
           </tr>
           <tr *ngIf="lancamentos.length === 0">
-            <td colspan="4" class="text-center py-5 text-muted">
+            <td colspan="5" class="text-center py-5 text-muted">
               <i class="bi bi-inbox fs-1 d-block mb-2"></i>
               Nenhum lançamento encontrado
             </td>

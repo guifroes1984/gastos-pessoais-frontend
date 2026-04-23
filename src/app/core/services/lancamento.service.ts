@@ -29,4 +29,8 @@ export class LancamentoService {
     return this.http.get<any[]>(`${environment.apiUrl}/categorias`);
   }
 
+  excluir(id: number) {
+    return this.http.delete(`${this.api}/${id}`);
+  }
+
 }
