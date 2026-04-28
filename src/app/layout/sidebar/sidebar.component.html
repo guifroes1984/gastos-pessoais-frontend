@@ -1,0 +1,39 @@
+<div class="d-flex">
+    <div class="sidebar" [class.collapsed]="collapsed">
+        <div class="sidebar-header d-flex align-items-center justify-content-between px-3 py-3">
+            <span *ngIf="!collapsed" class="fw-bold fs-5">Financeiro</span>
+
+            <button class="btn btn-sm btn-toggle" (click)="toggle()">
+                <i class="bi" [ngClass]="collapsed ? 'bi-list' : 'bi-x-lg'"></i>
+            </button>
+        </div>
+        <ul class="nav flex-column mt-3">
+
+            <li class="nav-item">
+                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+
+                    <i class="bi bi-speedometer2"></i>
+                    <span *ngIf="!collapsed">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/lancamentos" routerLinkActive="active" class="nav-link d-flex align-items-center">
+
+                    <i class="bi bi-receipt"></i>
+                    <span *ngIf="!collapsed">Lançamentos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/categorias" routerLinkActive="active" class="nav-link d-flex align-items-center">
+
+                    <i class="bi bi-tags"></i>
+                    <span *ngIf="!collapsed">Categorias</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="content flex-grow-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>

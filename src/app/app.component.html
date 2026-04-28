@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div *ngIf="mostrarSidebar()">
+    <app-sidebar></app-sidebar>
+    <div class="flex-grow-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div *ngIf="!mostrarSidebar()">
+    <router-outlet></router-outlet>
+</div>
