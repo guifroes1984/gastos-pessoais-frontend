@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'novo', 
     component: LancamentoFormComponent, 
     canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'editar/:id', 
+    component: LancamentoFormComponent, 
+    canActivate: [AuthGuard]
   }
 ];
 

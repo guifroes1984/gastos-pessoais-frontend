@@ -33,4 +33,12 @@ export class LancamentoService {
     return this.http.delete(`${this.api}/${id}`);
   }
 
+  buscarPorId(id: number) {
+    return this.http.get<any>(`${this.api}/${id}`);
+  }
+
+  atualizar(id: number, dados: any) {
+    return this.http.put(`${this.api}/${id}`, dados);
+  }
+
 }
