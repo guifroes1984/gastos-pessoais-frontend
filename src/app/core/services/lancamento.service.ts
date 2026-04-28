@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Resumo } from '../models/resumo';
 import { Lancamento } from '../models/lancamento';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  listar() {
-    return this.http.get<Lancamento[]>(this.api);
+  listar(page: number = 0, size: number = 5) {
+    return this.http.get<Page<Lancamento>>(`${this.api}?page=${page}&size=${size}`);
   }
 
   resumo() {

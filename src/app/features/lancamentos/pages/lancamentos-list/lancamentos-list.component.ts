@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Lancamento } from 'src/app/core/models/lancamento';
 import { LancamentoService } from 'src/app/core/services/lancamento.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { LancamentoService } from 'src/app/core/services/lancamento.service';
 })
 export class LancamentosListComponent implements OnInit {
 
-  lancamentos: any[] = [];
+  lancamentos: Lancamento[] = [];
+
+  pagina = 0;
+  totalPaginas = 0;
 
   constructor(private service: LancamentoService) { }
 
@@ -17,21 +21,36 @@ export class LancamentosListComponent implements OnInit {
   }
 
   carregar() {
-    this.service.listar().subscribe({
-      next: (res: any) => {
-        this.lancamentos = res.content ?? res;
+    this.service.listar(this.pagina).subscribe({
+      next: (res) => {
+        this.lancamentos = res.content;
+        this.totalPaginas = res.totalPages;
       },
     });
   }
 
   excluir(id: number) {
-    if(!confirm('Deseja realmente excluir?')) return;
+    if (!confirm('Deseja realmente excluir?')) return;
 
     this.service.excluir(id).subscribe({
       next: () => {
         this.carregar();
       }
     });
+  }
+
+  paginaAnterior() {
+    if (this.pagina > 0) {
+      this.pagina--;
+      this.carregar();
+    }
+  }
+
+  proximaPagina() {
+    if (this.pagina < this.totalPaginas - 1) {
+      this.pagina++;
+      this.carregar();
+    }
   }
 
 }
