@@ -9,6 +9,40 @@
   </div>
   <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
     <div class="table-responsive">
+      <div class="card shadow-sm border-0 mb-3 p-3">
+        <div class="row g-3">
+
+          <!-- Tipo -->
+          <div class="col-md-3">
+            <select class="form-select" [(ngModel)]="filtros.tipo">
+              <option value="">Todos</option>
+              <option value="RECEITA">Receita</option>
+              <option value="DESPESA">Despesa</option>
+            </select>
+          </div>
+
+          <!-- Data início -->
+          <div class="col-md-3">
+            <input type="date" class="form-control" [(ngModel)]="filtros.dataInicio">
+          </div>
+
+          <!-- Data fim -->
+          <div class="col-md-3">
+            <input type="date" class="form-control" [(ngModel)]="filtros.dataFim">
+          </div>
+
+          <!-- Botões -->
+          <div class="col-md-3 d-flex gap-2">
+            <button class="btn btn-primary w-100" (click)="filtrar()">
+              Filtrar
+            </button>
+            <button class="btn btn-outline-secondary w-100" (click)="limparFiltros()">
+              Limpar
+            </button>
+          </div>
+
+        </div>
+      </div>
       <table class="table table-hover align-middle mb-0">
         <thead class="bg-dark text-white">
           <tr class="text-uppercase small fw-semibold">

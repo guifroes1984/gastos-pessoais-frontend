@@ -13,6 +13,7 @@ export class LancamentosListComponent implements OnInit {
 
   pagina = 0;
   totalPaginas = 0;
+  totalRegistros = 0;
 
   constructor(private service: LancamentoService) { }
 
@@ -20,13 +21,35 @@ export class LancamentosListComponent implements OnInit {
     this.carregar();
   }
 
+  filtros = {
+    tipo: '',
+    dataInicio: '',
+    dataFim: ''
+  };
+
   carregar() {
-    this.service.listar(this.pagina).subscribe({
+    this.service.listar(this.pagina, 5, this.filtros).subscribe({
       next: (res) => {
         this.lancamentos = res.content;
         this.totalPaginas = res.totalPages;
+        this.totalRegistros = res.totalElements;
       },
     });
+  }
+
+  filtrar() {
+    console.log(this.filtros);
+    this.pagina = 0;
+    this.carregar();
+  }
+
+  limparFiltros() {
+    this.filtros = {
+      tipo: '',
+      dataInicio: '',
+      dataFim: ''
+    };
+    this.carregar();
   }
 
   excluir(id: number) {

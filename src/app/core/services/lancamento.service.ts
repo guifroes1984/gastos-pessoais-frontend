@@ -14,9 +14,18 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  listar(page: number = 0, size: number = 5) {
-    return this.http.get<Page<Lancamento>>(`${this.api}?page=${page}&size=${size}`);
-  }
+  listar(page: number = 0, size: number = 5, filtros?: any) {
+  let params: any = {
+    page,
+    size
+  };
+
+  if (filtros?.tipo) params.tipo = filtros.tipo;
+  if (filtros?.dataInicio) params.inicio = filtros.dataInicio; // 👈 AQUI
+  if (filtros?.dataFim) params.fim = filtros.dataFim; // 👈 AQUI
+
+  return this.http.get<Page<Lancamento>>(`${this.api}/filtro`, { params });
+}
 
   resumo() {
     return this.http.get<Resumo>(`${this.api}/resumo`);
