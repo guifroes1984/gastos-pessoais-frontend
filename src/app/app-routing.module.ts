@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'lancamentos', 
     loadChildren: () => 
       import('./features/lancamentos/lancamentos.module').then(m => m.LancamentosModule)
+  }, 
+  {
+  path: 'categorias',
+  loadChildren: () => 
+    import('./feature/categorias/categorias.module').then(m => m.CategoriasModule)
   }
 ];
 
