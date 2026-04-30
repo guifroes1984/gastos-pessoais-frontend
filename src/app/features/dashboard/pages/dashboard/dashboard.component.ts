@@ -22,8 +22,18 @@ export class DashboardComponent implements OnInit {
     datasets: [
       {
         data: [0, 0],
-        backgroundColor: ['#22c55e', '#ef4444'], 
+        backgroundColor: ['#22c55e', '#ef4444'],
         hoverBackgroundColor: ['#16a34a', '#dc2626']
+      }
+    ]
+  };
+
+  categoriaChartData: ChartConfiguration<'doughnut'>['data'] = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: []
       }
     ]
   };
@@ -36,6 +46,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarResumo();
+    this.carregarCategorias();
   }
 
   carregarResumo() {
@@ -58,9 +69,41 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  carregarCategorias() {
+    const hoje = new Date();
+    const inicio = `${hoje.getFullYear()}-01-01`;
+    const fim = `${hoje.getFullYear()}-12-31`;
+
+    this.lancamentoService.resumoPorCategoria(inicio, fim).subscribe({
+      next: (res) => {
+
+        this.categoriaChartData = {
+          labels: res.map(c => c.categoria),
+          datasets: [
+            {
+              data: res.map(c => c.total),
+              backgroundColor: this.gerarCores(res.length),
+              hoverBackgroundColor: this.gerarCores(res.length)
+            }
+          ]
+        };
+
+      }
+    });
+  }
+
   logout() {
     this.tokenService.removerToken();
     this.router.navigate(['/login']);
   }
 
+  gerarCores(qtd: number): string[] {
+    const cores = [
+      '#3b82f6', '#22c55e', '#f59e0b',
+      '#ef4444', '#8b5cf6', '#06b6d4',
+      '#ec4899', '#84cc16'
+    ];
+
+    return Array.from({ length: qtd }, (_, i) => cores[i % cores.length]);
+  }
 }

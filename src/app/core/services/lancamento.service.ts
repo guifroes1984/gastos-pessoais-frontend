@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Resumo } from '../models/resumo';
 import { Lancamento } from '../models/lancamento';
 import { Page } from '../models/page';
+import { ResumoCategoria } from '../models/resumoCategoria';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class LancamentoService {
 
   resumo() {
     return this.http.get<Resumo>(`${this.api}/resumo`);
+  }
+
+  resumoPorCategoria(inicio: string, fim: string) {
+    return this.http.get<ResumoCategoria[]>( `${this.api}/resumo/categorias?inicio=${inicio}&fim=${fim}`);
   }
 
   salvar(dados: any) {

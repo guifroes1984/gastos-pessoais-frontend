@@ -55,27 +55,33 @@
     </div>
 
   </div>
-  <div class="row mt-4">
-    <div class="col-md-5 mx-auto">
-      <div class="card border-0 shadow-lg rounded-4 p-4">
-
+  <div class="row mt-4 g-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-lg rounded-4 p-4 h-100">
         <h5 class="fw-semibold text-primary mb-3">
           <i class="bi bi-pie-chart me-2"></i>Receitas vs Despesas
         </h5>
-        <div *ngIf="receitas > 0 || despesas > 0; else semDados" class="chart-container">
-          <canvas baseChart
-            [data]="chartData"
-            [type]="'doughnut'">
+        <div *ngIf="receitas > 0 || despesas > 0; else semDados1" class="chart-container">
+          <canvas baseChart [data]="chartData" [type]="'doughnut'">
           </canvas>
         </div>
-        <ng-template #semDados>
+        <ng-template #semDados1>
           <div class="text-center text-muted py-5">
-            <i class="bi bi-bar-chart fs-1 d-block mb-2"></i>
-            Nenhum dado para exibir
+            Nenhum dado
           </div>
         </ng-template>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-lg rounded-4 p-4 h-100">
+        <h5 class="fw-semibold text-primary mb-3">
+          <i class="bi bi-tags me-2"></i>Por Categoria
+        </h5>
+        <div class="chart-container">
+          <canvas baseChart [data]="categoriaChartData" [type]="'doughnut'">
+          </canvas>
+        </div>
+      </div>
+    </div>
   </div>
-
 </div>
