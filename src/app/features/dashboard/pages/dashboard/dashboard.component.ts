@@ -97,6 +97,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  temCategorias(): boolean {
+    return (
+      this.categoriaChartData?.datasets?.[0]?.data?.some(v => v > 0)
+    );
+  }
+
   gerarCores(qtd: number): string[] {
     const cores = [
       '#3b82f6', '#22c55e', '#f59e0b',

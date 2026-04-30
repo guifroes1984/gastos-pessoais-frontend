@@ -67,6 +67,7 @@
         </div>
         <ng-template #semDados1>
           <div class="text-center text-muted py-5">
+            <i class="bi bi-inbox fs-1 d-block mb-2"></i>
             Nenhum dado
           </div>
         </ng-template>
@@ -77,10 +78,16 @@
         <h5 class="fw-semibold text-primary mb-3">
           <i class="bi bi-tags me-2"></i>Por Categoria
         </h5>
-        <div class="chart-container">
+        <div *ngIf="temCategorias(); else semDadosCategoria" class="chart-container">
           <canvas baseChart [data]="categoriaChartData" [type]="'doughnut'">
           </canvas>
         </div>
+        <ng-template #semDadosCategoria>
+          <div class="text-center text-muted py-5">
+            <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+            Nenhuma categoria encontrada
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
