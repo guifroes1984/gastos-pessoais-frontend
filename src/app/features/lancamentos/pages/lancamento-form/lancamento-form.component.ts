@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Categoria } from 'src/app/core/models/categoria';
+import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { LancamentoService } from 'src/app/core/services/lancamento.service';
 
 @Component({
@@ -11,11 +13,12 @@ import { LancamentoService } from 'src/app/core/services/lancamento.service';
 export class LancamentoFormComponent implements OnInit {
 
   id: number | null = null;
-  categorias: any[] = [];
+  categorias: Categoria[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private service: LancamentoService,
+    private service: LancamentoService, 
+    private categoriaService: CategoriaService, 
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -41,6 +44,8 @@ export class LancamentoFormComponent implements OnInit {
       this.carregarLancamento();
     }
 
+    this.carregarCategorias();
+
   }
 
   salvar() {
@@ -60,6 +65,14 @@ export class LancamentoFormComponent implements OnInit {
         next: () => this.router.navigate(['/lancamentos'])
       });
     }
+  }
+
+  carregarCategorias() {
+    this.categoriaService.listar().subscribe({
+      next: (res) => {
+        this.categorias = res;
+      }
+    });
   }
 
   carregarLancamento() {
