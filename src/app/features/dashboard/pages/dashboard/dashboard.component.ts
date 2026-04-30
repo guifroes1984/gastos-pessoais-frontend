@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChartConfiguration } from 'chart.js';
 import { LancamentoService } from 'src/app/core/services/lancamento.service';
 import { TokenService } from 'src/app/core/services/token.service';
 
@@ -14,8 +15,21 @@ export class DashboardComponent implements OnInit {
   receitas = 0;
   despesas = 0;
 
+  resumo: any;
+
+  chartData: ChartConfiguration<'doughnut'>['data'] = {
+    labels: ['Receitas', 'Despesas'],
+    datasets: [
+      {
+        data: [0, 0],
+        backgroundColor: ['#22c55e', '#ef4444'], 
+        hoverBackgroundColor: ['#16a34a', '#dc2626']
+      }
+    ]
+  };
+
   constructor(
-    private tokenService: TokenService, 
+    private tokenService: TokenService,
     private lancamentoService: LancamentoService,
     private router: Router
   ) { }
@@ -30,8 +44,18 @@ export class DashboardComponent implements OnInit {
         this.saldo = res.saldo;
         this.receitas = res.totalReceitas;
         this.despesas = res.totalDespesas;
+
+        this.chartData = {
+          ...this.chartData,
+          datasets: [
+            {
+              ...this.chartData.datasets[0],
+              data: [res.totalReceitas, res.totalDespesas]
+            }
+          ]
+        };
       }
-    })
+    });
   }
 
   logout() {

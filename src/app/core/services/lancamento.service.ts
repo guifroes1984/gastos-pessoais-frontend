@@ -21,8 +21,8 @@ export class LancamentoService {
   };
 
   if (filtros?.tipo) params.tipo = filtros.tipo;
-  if (filtros?.dataInicio) params.inicio = filtros.dataInicio; // 👈 AQUI
-  if (filtros?.dataFim) params.fim = filtros.dataFim; // 👈 AQUI
+  if (filtros?.dataInicio) params.inicio = filtros.dataInicio;
+  if (filtros?.dataFim) params.fim = filtros.dataFim;
 
   return this.http.get<Page<Lancamento>>(`${this.api}/filtro`, { params });
 }

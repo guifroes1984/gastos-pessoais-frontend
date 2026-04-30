@@ -38,7 +38,6 @@ export class LancamentosListComponent implements OnInit {
   }
 
   filtrar() {
-    console.log(this.filtros);
     this.pagina = 0;
     this.carregar();
   }
